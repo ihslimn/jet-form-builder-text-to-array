@@ -6,7 +6,6 @@ use JFB_Text_To_Array\Plugin;
 use Jet_Form_Builder\Actions\Manager;
 use Jet_Form_Builder\Actions\Types\Base as ActionBase;
 use Jet_Form_Builder\Actions\Action_Handler;
-use Jet_Engine\Query_Builder\Manager as Queries;
 use Jet_Form_Builder\Exceptions\Action_Exception as Error;
 
 class Text_To_Array extends ActionBase {
@@ -111,13 +110,7 @@ class Text_To_Array extends ActionBase {
 
 		}
 
-		if ( $index ) {
-			//throw new Error( 'Incorrect input' );
-		}
-
 		jet_fb_context()->update_request( $result, $array_field );
-
-		//var_dump( $result,$index );exit;
 
 	}
 

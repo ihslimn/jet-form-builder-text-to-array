@@ -23,7 +23,7 @@ add_action( 'plugins_loaded', function() {
 
 		add_action( 'admin_notices', function() {
 			$class = 'notice notice-error';
-			$message = '<b>WARNING!</b> <b>JetFormBuilder - Text to array</b> plugin requires both <b>JetFormBuilder</b> and <b>JetEngine</b> plugins to be installed and activated.';
+			$message = '<b>WARNING!</b> <b>JetFormBuilder - Text to array</b> plugin requires <b>JetFormBuilder</b> plugin to be installed and activated.';
 			printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), wp_kses_post( $message ) );
 		} );
 
