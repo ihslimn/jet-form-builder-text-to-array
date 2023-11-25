@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: JetFormBuilder - Text to array
+ * Plugin Name: JetFormBuilder - Prepare Array
  * Plugin URI:  
- * Description: 
+ * Description: Converts text to array, or array to array of associative arrays.
  * Version:     1.0.0
  * Author:      ihslimn
  * Author URI:  https://github.com/ihslimn
@@ -23,7 +23,7 @@ add_action( 'plugins_loaded', function() {
 
 		add_action( 'admin_notices', function() {
 			$class = 'notice notice-error';
-			$message = '<b>WARNING!</b> <b>JetFormBuilder - Text to array</b> plugin requires <b>JetFormBuilder</b> plugin to be installed and activated.';
+			$message = '<b>WARNING!</b> <b>JetFormBuilder - Prepare Array</b> plugin requires <b>JetFormBuilder</b> plugin to be installed and activated.';
 			printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), wp_kses_post( $message ) );
 		} );
 

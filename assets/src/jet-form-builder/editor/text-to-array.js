@@ -21,6 +21,12 @@ addAction( 'jfbc_text_to_array', function TextToArray( {
 			onChange={ newVal => onChangeSetting( newVal, 'text_field' ) }
 		/>
 		<TextControl
+			label={ label( 'separator' ) }
+			value={ settings.separator }
+			help={ label('separator_desc') }
+			onChange={ newVal => onChangeSetting( newVal, 'separator' ) }
+		/>
+		<TextControl
 			label={ label( 'lines_per_item' ) }
 			value={ settings.lines_per_item }
 			onChange={ newVal => onChangeSetting( newVal, 'lines_per_item' ) }

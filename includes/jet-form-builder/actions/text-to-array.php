@@ -32,7 +32,7 @@ class Text_To_Array extends ActionBase {
 	}
 
 	public function get_name() {
-		return 'Text to Array';
+		return 'Prepare array';
 	}
 
 	public function self_script_name() {
@@ -41,11 +41,13 @@ class Text_To_Array extends ActionBase {
 
 	public function editor_labels() {
 		return array(
-			'text_field'       => 'Text field',
+			'text_field'       => 'Text/array field',
 			'lines_per_item'   => 'Lines per item',
 			'keys'             => 'Keys',
 			'array_field'      => 'Save to',
 			'array_field_desc' => 'Form field to save resulting array to',
+			'separator'        => 'Custom separator',
+			'separator_desc'   => 'Separator by default is a line break for text fields; unused if field contains an array',
 		);
 	}
 
@@ -73,7 +75,23 @@ class Text_To_Array extends ActionBase {
 			return;
 		}
 
-		$array = preg_split( '/\r\n|\r|\n/', $text );
+		$pattern = '/\r\n|\r|\n/';
+
+		if ( ! empty( $this->settings['separator'] ) ) {
+			$separator = $this->settings['separator'];
+			$separator = preg_quote( $separator, '/' );
+			$pattern = "/{$separator}/";
+		}
+
+		if ( is_string( $text ) ) {
+			$array = preg_split( $pattern, $text );
+		} elseif ( is_array( $text ) ) {
+			$array = $text;
+		}
+
+		if ( ! is_array( $array ) ) {
+			throw new Error( 'Cannot convert value.' );
+		}
 
 		$lines_per_item = ( int ) $this->settings['lines_per_item'] ?? 1;
 
@@ -109,7 +127,7 @@ class Text_To_Array extends ActionBase {
 			}
 
 		}
-
+		
 		jet_fb_context()->update_request( $result, $array_field );
 
 	}
